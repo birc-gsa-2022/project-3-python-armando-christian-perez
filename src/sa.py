@@ -12,6 +12,7 @@ def fasta_translator(file):
     output_dict = {}
     start = True
     for i in file:
+        i = i.strip()
         if i[0] == ">":
             if  not start:
                 output_dict[name] = seq
@@ -20,7 +21,7 @@ def fasta_translator(file):
             if start:
                 start = False
         else:
-            seq += i.strip()
+            seq += i
     output_dict[name] = seq
     return output_dict
 
