@@ -8,10 +8,10 @@ argparser.add_argument("reads", type=argparse.FileType('r'))
 args = argparser.parse_args()
 
 
-def fasta_translator(file):
+def fasta_translator(input_file):
     output_dict = {}
     start = True
-    for i in file:
+    for i in input_file:
         print("hello", "\t", i)
         i = i.strip()
         if len(i) == 0:
@@ -30,9 +30,9 @@ def fasta_translator(file):
     output_dict[name] = seq
     return output_dict
 
-def fastq_translator(file):
+def fastq_translator(input_file):
     output_dict = {}
-    for i in file:
+    for i in input_file:
         if i[0] == "@":
             name = i[1:].strip()
         else:
@@ -244,14 +244,14 @@ def SA_match(SA, LCP, string, pattern):
             break
     return SA[lo:hi]
 
-def matches_to_SAM(read_file, reference_file):
+def matches_to_SAM(read_file, ref_file):
     read_name = []
     reference_name = []
     match_index = []
     CIGARS = []
     match_string = []
 
-    fasta_dict, fastq_dict = fasta_translator(reference_file), fastq_translator(read_file)
+    fasta_dict, fastq_dict = fasta_translator(ref_file), fastq_translator(read_file)
 
     for i in fasta_dict:
         SA, LCP = naive(fasta_dict[i])
