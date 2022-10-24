@@ -13,6 +13,8 @@ def fasta_translator(file):
     start = True
     for i in file:
         i = i.strip()
+        if len(i) == 0:
+            continue
         if i[0] == ">":
             if  not start:
                 output_dict[name] = seq
