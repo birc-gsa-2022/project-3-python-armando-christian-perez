@@ -31,6 +31,7 @@ Ran on several types of strings and patterns, including trusty missisippi.
 *How did you validate that the construct and the search algorithm works?*
 
 ## Running time
-
-
+![](match_dna.png)
+![](SA_DNA.png)
+As can be seen on the figures the SA construction rises exponentially as length increases and the match is slowest when the pattern is short, meaning there should be more matches in a random, non-repeating string. Unfortunately, as the LCP construction algorithm is veery slow, i wasn't able to get quality results for strings and patterns of smaller alphabets.
 *List experiments and results that show that both the construction algorithm and the search algorithm works in the expected running time. Add figures by embedding them here, as you learned how to do in project 1.*
