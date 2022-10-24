@@ -12,6 +12,7 @@ def fasta_translator(file):
     output_dict = {}
     start = True
     for i in file:
+        print("hello", "\t", "i")
         i = i.strip()
         if len(i) == 0:
             continue
