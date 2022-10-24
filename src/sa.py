@@ -20,6 +20,8 @@ def fasta_translator(file):
             seq = ""
             if start:
                 start = False
+        elif start:
+            continue
         else:
             seq += i
     output_dict[name] = seq
