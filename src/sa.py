@@ -1,18 +1,20 @@
 import argparse
 import sys
 
-argparser = argparse.ArgumentParser(
-    description="Exact matching using suffix tree construction")
-argparser.add_argument("genome", type=argparse.FileType('r'))
-argparser.add_argument("reads", type=argparse.FileType('r'))
-args = argparser.parse_args()
+def main():
+    argparser = argparse.ArgumentParser(
+        description="Exact matching using suffix tree construction")
+    argparser.add_argument("genome", type=argparse.FileType('r'))
+    argparser.add_argument("reads", type=argparse.FileType('r'))
+    args = argparser.parse_args()
+    SAM = matches_to_SAM(args.reads, args.genome)
+    print_SAM(SAM)
 
 
 def fasta_translator(input_file):
     output_dict = {}
     start = True
     for i in input_file:
-        print("hello", "\t", i)
         i = i.strip()
         if len(i) == 0:
             continue
@@ -216,7 +218,7 @@ def SA_search(SA, string, pattern):
         match = compare_strings(pattern, suffix)
         if match is None:
             return mid
-        elif hi == lo:
+        elif hi <= lo:
             return None
         elif match:
             lo = mid + 1
@@ -271,6 +273,5 @@ def print_SAM(SAM):
     for i in range(len(SAM[0])):
         sys.stdout.write(SAM[0][i] + "\t" + SAM[1][i] + "\t" + str(SAM[2][i]) + "\t" + SAM[3][i] + "\t" + SAM[4][i] + "\n")
 
-SAM = matches_to_SAM(args.reads, args.genome)
-
-print_SAM(SAM)
+if __name__ == '__main__':
+    main()
